@@ -22,7 +22,9 @@ class CalendarViewApp extends StatelessWidget {
             horizontal: 5.0,
             vertical: 10.0,
           ),
-          child: new Calendar(),
+          child: new Calendar(
+            isExpandable: false,
+          ),
         ),
       ),
     );
