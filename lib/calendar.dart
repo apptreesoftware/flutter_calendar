@@ -4,21 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_calendar/calendar_tile.dart';
 import 'package:flutter_calendar/src/utils.dart';
 
+typedef DayBuilder(BuildContext context, DateTime day);
+
 class Calendar extends StatefulWidget {
   final VoidCallback onDateSelected;
-  final TextStyle dateStyles;
-  final TextStyle dayOfWeekStyles;
-  final TextStyle outOfMonthDateStyles;
-  final Border tileBorder;
   final bool isExpandable;
+  final Widget dayBuilder;
 
   Calendar({
     this.onDateSelected,
-    this.dateStyles,
-    this.dayOfWeekStyles,
-    this.outOfMonthDateStyles,
-    this.tileBorder,
-    this.isExpandable: false,
+    this.isExpandable: true,
+    this.dayBuilder,
   });
 
   @override
@@ -98,16 +94,6 @@ class _CalendarState extends State<Calendar> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return new Container(
-      child: new Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[monthNameRow, calendarGridView],
-      ),
-    );
-  }
-
   List<Widget> calendarBuilder() {
     List<Widget> dayWidgets = [];
     List<DateTime> calendarDays =
@@ -119,7 +105,6 @@ class _CalendarState extends State<Calendar> {
           new CalendarTile(
             isDayOfWeek: true,
             dayOfWeek: day,
-            dayOfWeekStyles: widget.dayOfWeekStyles,
           ),
         );
       },
@@ -138,20 +123,76 @@ class _CalendarState extends State<Calendar> {
           monthStarted = true;
         }
 
-        dayWidgets.add(
-          new CalendarTile(
-            onDateSelected: () => handleSelectedDateAndUserCallback(day),
-            date: day,
-            dateStyles: (monthStarted && !monthEnded)
-                ? widget.outOfMonthDateStyles
-                : widget.dateStyles,
-            tileBorder: widget.tileBorder,
-            isSelected: Utils.isSameDay(selectedDate, day),
-          ),
-        );
+        if (this.widget.dayBuilder != null) {
+          dayWidgets.add(
+            new CalendarTile(
+              child: this.widget.dayBuilder,
+            ),
+          );
+        } else {
+          dayWidgets.add(
+            new CalendarTile(
+              onDateSelected: () => handleSelectedDateAndUserCallback(day),
+              date: day,
+              dateStyles: configureDateStyle(monthStarted, monthEnded),
+              isSelected: Utils.isSameDay(selectedDate, day),
+            ),
+          );
+        }
       },
     );
     return dayWidgets;
+  }
+
+  TextStyle configureDateStyle(monthStarted, monthEnded) {
+    TextStyle dateStyles;
+    if (isExpanded) {
+      dateStyles = monthStarted && !monthEnded
+          ? new TextStyle(color: Colors.black)
+          : new TextStyle(color: Colors.black38);
+    } else {
+      dateStyles = (monthStarted && !monthEnded)
+          ? new TextStyle(color: Colors.black38)
+          : new TextStyle(color: Colors.black);
+    }
+    return dateStyles;
+  }
+
+  Widget get expansionButtonRow {
+    if (widget.isExpandable) {
+      return new Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          new Text(Utils.fullDayFormat(selectedDate)),
+          new IconButton(
+            onPressed: toggleExpanded,
+            icon: isExpanded
+                ? new Icon(Icons.arrow_drop_up)
+                : new Icon(Icons.arrow_drop_down),
+          ),
+        ],
+      );
+    } else {
+      return new Container();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+      child: new Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          monthNameRow,
+          new ExpansionCrossFade(
+            collapsed: calendarGridView,
+            expanded: calendarGridView,
+            isExpanded: isExpanded,
+          ),
+          expansionButtonRow
+        ],
+      ),
+    );
   }
 
   void resetToToday() {
@@ -286,12 +327,12 @@ class ExpansionCrossFade extends StatelessWidget {
       child: new AnimatedCrossFade(
         firstChild: collapsed,
         secondChild: expanded,
-        firstCurve: const Interval(0.0, 0.5, curve: Curves.fastOutSlowIn),
-        secondCurve: const Interval(0.5, 1.0, curve: Curves.fastOutSlowIn),
+        firstCurve: const Interval(0.0, 1.0, curve: Curves.fastOutSlowIn),
+        secondCurve: const Interval(0.0, 1.0, curve: Curves.fastOutSlowIn),
         sizeCurve: Curves.decelerate,
         crossFadeState:
             isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-        duration: const Duration(milliseconds: 400),
+        duration: const Duration(milliseconds: 300),
       ),
     );
   }

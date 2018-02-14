@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_calendar/calendar.dart';
 
@@ -27,4 +26,5 @@ class CalendarViewApp extends StatelessWidget {
         ),
       ),
     );
-  }}
+  }
+}
