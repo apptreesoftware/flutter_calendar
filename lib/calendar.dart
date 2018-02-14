@@ -13,7 +13,7 @@ class Calendar extends StatefulWidget {
 
   Calendar({
     this.onDateSelected,
-    this.isExpandable: true,
+    this.isExpandable: false,
     this.dayBuilder,
   });
 
