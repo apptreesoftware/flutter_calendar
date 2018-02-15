@@ -15,16 +15,14 @@ class CalendarViewApp extends StatelessWidget {
       ),
       home: new Scaffold(
         appBar: new AppBar(
-          title: new Text('A Calendar?'),
+          title: new Text('Flutter Calendar'),
         ),
         body: new Container(
           margin: new EdgeInsets.symmetric(
             horizontal: 5.0,
             vertical: 10.0,
           ),
-          child: new Calendar(
-            dayBuilder: new Text('!'),
-          ),
+          child: new Calendar(),
         ),
       ),
     );
