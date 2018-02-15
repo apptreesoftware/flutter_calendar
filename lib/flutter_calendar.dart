@@ -27,6 +27,7 @@ class _CalendarState extends State<Calendar> {
   List<DateTime> selectedMonthsDays;
   Iterable<DateTime> selectedWeeksDays;
   DateTime selectedDate;
+  String currentMonth;
   bool isExpanded = false;
 
   void initState() {
@@ -70,7 +71,7 @@ class _CalendarState extends State<Calendar> {
       children: [
         leftIcon,
         new Text(
-          Utils.formatMonth(today),
+          Utils.formatMonth(Utils.firstDayOfWeek(today)),
           style: new TextStyle(
             fontSize: 20.0,
           ),
@@ -156,9 +157,7 @@ class _CalendarState extends State<Calendar> {
           ? new TextStyle(color: Colors.black)
           : new TextStyle(color: Colors.black38);
     } else {
-      dateStyles = (monthStarted && !monthEnded)
-          ? new TextStyle(color: Colors.black38)
-          : new TextStyle(color: Colors.black);
+      dateStyles = new TextStyle(color: Colors.black);
     }
     return dateStyles;
   }
