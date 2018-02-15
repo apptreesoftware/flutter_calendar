@@ -2,7 +2,7 @@
 
 A calendar widget for Flutter Apps.
 
-Borrowed DateTime util functions from the (Tzolkin Web Calendar Element)[https://github.com/apptreesoftware/tzolkin].
+Borrowed DateTime utility functions from the (Tzolkin Calendar web element)[https://github.com/apptreesoftware/tzolkin].
 
 ## Usage
 
