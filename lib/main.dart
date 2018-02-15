@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_calendar/calendar.dart';
+import 'package:flutter_calendar/flutter_calendar.dart';
 
 main() {
   runApp(new CalendarViewApp());
@@ -22,7 +22,9 @@ class CalendarViewApp extends StatelessWidget {
             horizontal: 5.0,
             vertical: 10.0,
           ),
-          child: new Calendar(),
+          child: new Calendar(
+            isExpandable: true,
+          ),
         ),
       ),
     );

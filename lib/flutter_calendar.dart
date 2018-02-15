@@ -34,8 +34,11 @@ class _CalendarState extends State<Calendar> {
     selectedMonthsDays = Utils.daysInMonth(today);
     var firstDayOfCurrentWeek = Utils.firstDayOfWeek(today);
     var lastDayOfCurrentWeek = Utils.lastDayOfWeek(today);
-    selectedWeeksDays =
-        Utils.daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek).toList();
+    selectedWeeksDays = Utils
+        .daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
+        .toList()
+        .sublist(0, 7);
+
     selectedDate = today;
   }
 
@@ -88,6 +91,8 @@ class _CalendarState extends State<Calendar> {
           shrinkWrap: true,
           crossAxisCount: 7,
           childAspectRatio: 1.5,
+          mainAxisSpacing: 0.0,
+          padding: new EdgeInsets.only(bottom: 0.0),
           children: calendarBuilder(),
         ),
       ),
@@ -165,6 +170,8 @@ class _CalendarState extends State<Calendar> {
         children: <Widget>[
           new Text(Utils.fullDayFormat(selectedDate)),
           new IconButton(
+            iconSize: 20.0,
+            padding: new EdgeInsets.all(0.0),
             onPressed: toggleExpanded,
             icon: isExpanded
                 ? new Icon(Icons.arrow_drop_up)
@@ -228,7 +235,8 @@ class _CalendarState extends State<Calendar> {
       var lastDayOfCurrentWeek = Utils.lastDayOfWeek(today);
       selectedWeeksDays = Utils
           .daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
-          .toList();
+          .toList()
+          .sublist(0, 7);
     });
   }
 
@@ -239,7 +247,8 @@ class _CalendarState extends State<Calendar> {
       var lastDayOfCurrentWeek = Utils.lastDayOfWeek(today);
       selectedWeeksDays = Utils
           .daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
-          .toList();
+          .toList()
+          .sublist(0, 7);
     });
   }
 
