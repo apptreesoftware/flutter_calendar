@@ -1,22 +1,29 @@
 # flutter_calendar
 
-A calendar for Flutter apps.
+A calendar widget for Flutter Apps.
 
-## You got options:
+Borrowed DateTime util functions from the (Tzolkin Web Calendar Element)[https://github.com/apptreesoftware/tzolkin].
 
-### Just Render it
+## Usage
+
+Add to your pubspec dependencies:
+```dart
+    flutter_calendar: ^0.0.1
+```
+
+Render the map with one of three options:
+
+#### 1. Default, Material Design
 
 ```dart
 new Calendar()
 ```
 
-gives you:
-
 ![standard view](http://res.cloudinary.com/ericwindmill/image/upload/c_scale,h_500/v1518649521/flutter_calendar_standard_lu6l9i.gif)
 
 ***
 
-### Make it Expandable
+#### 2. An Expandable Map 
 
 ```dart
 new Calendar(
@@ -24,13 +31,11 @@ new Calendar(
 )
 ```
 
-gives you:
-
 ![expanded view](http://res.cloudinary.com/ericwindmill/image/upload/c_scale,h_500/v1518649515/flutter_calendar_expanded_d6gi9n.gif)
 
 ***
 
-### Customize It (Standard or Expandable)
+#### 3. Customize It (Standard or Expandable)
 
 ```dart
 new Calendar(
