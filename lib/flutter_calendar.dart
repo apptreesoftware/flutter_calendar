@@ -9,7 +9,7 @@ typedef DayBuilder(BuildContext context, DateTime day);
 class Calendar extends StatefulWidget {
   final VoidCallback onDateSelected;
   final bool isExpandable;
-  final Widget dayBuilder;
+  final DayBuilder dayBuilder;
 
   Calendar({
     this.onDateSelected,
@@ -132,7 +132,7 @@ class _CalendarState extends State<Calendar> {
         if (this.widget.dayBuilder != null) {
           dayWidgets.add(
             new CalendarTile(
-              child: this.widget.dayBuilder,
+              child: this.widget.dayBuilder(context, day),
             ),
           );
         } else {
@@ -188,6 +188,7 @@ class _CalendarState extends State<Calendar> {
     return new Container(
       child: new Column(
         mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           monthNameRow,
           new ExpansionCrossFade(

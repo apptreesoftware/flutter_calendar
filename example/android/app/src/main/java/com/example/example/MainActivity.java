@@ -1,4 +1,4 @@
-package cloud.apptree.fluttercalendar;
+package com.example.example;
 
 import android.os.Bundle;
 

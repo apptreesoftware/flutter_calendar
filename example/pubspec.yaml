@@ -1,0 +1,16 @@
+name: flutter_calendar_example
+description: Demonstrates the flutter_calendar widget
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_calendar:
+    path: ../
+
+
+flutter:
+  uses-material-design: true
