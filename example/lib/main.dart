@@ -26,7 +26,9 @@ class CalendarViewApp extends StatelessWidget {
             shrinkWrap: true,
             children: <Widget>[
               new Text('The Default Calendar:'),
-              new Calendar(),
+              new Calendar(
+                onDateSelected: (date) => print(date),
+              ),
               new Divider(
                 height: 50.0,
               ),
@@ -40,11 +42,14 @@ class CalendarViewApp extends StatelessWidget {
               new Text('A Custom Weekly Calendar:'),
               new Calendar(
                 dayBuilder: (BuildContext context, DateTime day) {
-                  return new Container(
-                    decoration: new BoxDecoration(
-                        border: new Border.all(color: Colors.black38)),
-                    child: new Text(
-                      day.day.toString(),
+                  return new InkWell(
+                    onTap: () => print(day),
+                    child: new Container(
+                      decoration: new BoxDecoration(
+                          border: new Border.all(color: Colors.black38)),
+                      child: new Text(
+                        day.day.toString(),
+                      ),
                     ),
                   );
                 },

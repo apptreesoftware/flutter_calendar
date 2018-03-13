@@ -7,7 +7,7 @@ import 'package:flutter_calendar/src/utils.dart';
 typedef DayBuilder(BuildContext context, DateTime day);
 
 class Calendar extends StatefulWidget {
-  final VoidCallback onDateSelected;
+  final ValueChanged<DateTime> onDateSelected;
   final bool isExpandable;
   final DayBuilder dayBuilder;
 
@@ -26,9 +26,11 @@ class _CalendarState extends State<Calendar> {
   DateTime today = new DateTime.now();
   List<DateTime> selectedMonthsDays;
   Iterable<DateTime> selectedWeeksDays;
-  DateTime selectedDate;
+  DateTime _selectedDate;
   String currentMonth;
   bool isExpanded = false;
+
+  DateTime get selectedDate => _selectedDate;
 
   void initState() {
     super.initState();
@@ -40,7 +42,7 @@ class _CalendarState extends State<Calendar> {
         .toList()
         .sublist(0, 7);
 
-    selectedDate = today;
+    _selectedDate = today;
   }
 
   Widget get monthNameRow {
@@ -207,7 +209,7 @@ class _CalendarState extends State<Calendar> {
     var firstDayOfCurrentWeek = Utils.firstDayOfWeek(today);
     var lastDayOfCurrentWeek = Utils.lastDayOfWeek(today);
     setState(() {
-      selectedDate = today;
+      _selectedDate = today;
       selectedWeeksDays = Utils
           .daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
           .toList();
@@ -265,7 +267,7 @@ class _CalendarState extends State<Calendar> {
 
     if (selectedDate != null) {
       setState(() {
-        selectedDate = selected;
+        _selectedDate = selected;
         selectedWeeksDays = Utils
             .daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
             .toList();
@@ -313,12 +315,14 @@ class _CalendarState extends State<Calendar> {
     var firstDayOfCurrentWeek = Utils.firstDayOfWeek(day);
     var lastDayOfCurrentWeek = Utils.lastDayOfWeek(day);
     setState(() {
-      selectedDate = day;
+      _selectedDate = day;
       selectedWeeksDays = Utils
           .daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
           .toList();
     });
-    widget.onDateSelected();
+    if (widget.onDateSelected != null) {
+      widget.onDateSelected(day);
+    }
   }
 }
 
