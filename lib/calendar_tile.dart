@@ -9,12 +9,10 @@ class CalendarTile extends StatelessWidget {
   final bool isSelected;
   final TextStyle dayOfWeekStyles;
   final TextStyle dateStyles;
-  final Border tileBorder;
   final Widget child;
 
   CalendarTile({
     this.onDateSelected,
-    this.tileBorder,
     this.date,
     this.child,
     this.dateStyles,
@@ -63,7 +61,6 @@ class CalendarTile extends StatelessWidget {
     }
     return new Container(
       decoration: new BoxDecoration(
-        border: tileBorder,
         color: Colors.white,
       ),
       child: renderDateOrDayOfWeek(context),

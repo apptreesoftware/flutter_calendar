@@ -8,11 +8,13 @@ typedef DayBuilder(BuildContext context, DateTime day);
 
 class Calendar extends StatefulWidget {
   final ValueChanged<DateTime> onDateSelected;
+  final ValueChanged<Map<String, DateTime>> onSelectedRangeChange;
   final bool isExpandable;
   final DayBuilder dayBuilder;
 
   Calendar({
     this.onDateSelected,
+    this.onSelectedRangeChange,
     this.isExpandable: false,
     this.dayBuilder,
   });
@@ -27,6 +29,7 @@ class _CalendarState extends State<Calendar> {
   List<DateTime> selectedMonthsDays;
   Iterable<DateTime> selectedWeeksDays;
   DateTime _selectedDate;
+  Map<String, DateTime> selectedRange;
   String currentMonth;
   bool isExpanded = false;
 
@@ -219,6 +222,9 @@ class _CalendarState extends State<Calendar> {
   void nextMonth() {
     setState(() {
       today = Utils.nextMonth(today);
+      var firstDateOfNewMonth = Utils.firstDayOfMonth(today);
+      var lastDateOfNewMonth = Utils.lastDayOfMonth(today);
+      updateSelectedRange(firstDateOfNewMonth, lastDateOfNewMonth);
       selectedMonthsDays = Utils.daysInMonth(today);
     });
   }
@@ -226,6 +232,9 @@ class _CalendarState extends State<Calendar> {
   void previousMonth() {
     setState(() {
       today = Utils.previousMonth(today);
+      var firstDateOfNewMonth = Utils.firstDayOfMonth(today);
+      var lastDateOfNewMonth = Utils.lastDayOfMonth(today);
+      updateSelectedRange(firstDateOfNewMonth, lastDateOfNewMonth);
       selectedMonthsDays = Utils.daysInMonth(today);
     });
   }
@@ -235,6 +244,7 @@ class _CalendarState extends State<Calendar> {
       today = Utils.nextWeek(today);
       var firstDayOfCurrentWeek = Utils.firstDayOfWeek(today);
       var lastDayOfCurrentWeek = Utils.lastDayOfWeek(today);
+      updateSelectedRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek);
       selectedWeeksDays = Utils
           .daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
           .toList()
@@ -247,11 +257,22 @@ class _CalendarState extends State<Calendar> {
       today = Utils.previousWeek(today);
       var firstDayOfCurrentWeek = Utils.firstDayOfWeek(today);
       var lastDayOfCurrentWeek = Utils.lastDayOfWeek(today);
+      updateSelectedRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek);
       selectedWeeksDays = Utils
           .daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
           .toList()
           .sublist(0, 7);
     });
+  }
+
+  void updateSelectedRange(DateTime start, DateTime end) {
+      selectedRange = {
+        'start': start,
+        'end': end,
+      };
+      if (widget.onSelectedRangeChange != null) {
+        widget.onSelectedRangeChange(selectedRange);
+      }
   }
 
   Future<Null> selectDateFromPicker() async {

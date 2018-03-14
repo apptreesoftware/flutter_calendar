@@ -6,6 +6,10 @@ main() {
 }
 
 class CalendarViewApp extends StatelessWidget {
+  void handleNewDate(date) {
+    print(date);
+  }
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -27,7 +31,7 @@ class CalendarViewApp extends StatelessWidget {
             children: <Widget>[
               new Text('The Default Calendar:'),
               new Calendar(
-                onDateSelected: (date) => print(date),
+                onDateSelected: (date) => handleNewDate(date),
               ),
               new Divider(
                 height: 50.0,
@@ -41,6 +45,7 @@ class CalendarViewApp extends StatelessWidget {
               ),
               new Text('A Custom Weekly Calendar:'),
               new Calendar(
+                onSelectedRangeChange: (range) => print(range),
                 dayBuilder: (BuildContext context, DateTime day) {
                   return new InkWell(
                     onTap: () => print(day),
