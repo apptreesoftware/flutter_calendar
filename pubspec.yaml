@@ -7,7 +7,7 @@ homepage: https://github.com/apptreesoftware/flutter_calendar
 dependencies:
   flutter:
     sdk: flutter
-  intl: ^0.14.0
+  intl: ^0.15.0
 
 dev_dependencies:
   flutter_test:
