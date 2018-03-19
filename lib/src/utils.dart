@@ -50,12 +50,21 @@ class Utils {
   }
 
   static DateTime firstDayOfWeek(DateTime day) {
-    day = day.add(new Duration(hours: 12));
+    // Handle Daylight Savings by setting hour to 12:00 Noon
+    // rather than the default of Midnight
+    day = new DateTime(day.year, day.month, day.day, 12);
+    // Weekday is on a 1-7 scale Monday - Sunday,
+    // This Calendar's Week starts on Sunday
     var decreaseNum = day.weekday % 7;
     return day.subtract(new Duration(days: decreaseNum));
   }
 
   static DateTime lastDayOfWeek(DateTime day) {
+    // Handle Daylight Savings by setting hour to 12:00 Noon
+    // rather than the default of Midnight
+    day = new DateTime(day.year, day.month, day.day, 0);
+    // Weekday is on a 1-7 scale Monday - Sunday,
+    // This Calendar's Week starts on Sunday
     var increaseNum = day.weekday % 7;
     return day.add(new Duration(days: 7 - increaseNum));
   }
