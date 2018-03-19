@@ -301,7 +301,7 @@ class _CalendarState extends State<Calendar> {
   Future<Null> selectDateFromPicker() async {
     DateTime selected = await showDatePicker(
       context: context,
-      initialDate: today ?? new DateTime.now(),
+      initialDate: _selectedDate ?? new DateTime.now(),
       firstDate: new DateTime(1960),
       lastDate: new DateTime(2050),
     );
@@ -309,7 +309,7 @@ class _CalendarState extends State<Calendar> {
     var firstDayOfCurrentWeek = Utils.firstDayOfWeek(selected);
     var lastDayOfCurrentWeek = Utils.lastDayOfWeek(selected);
 
-    if (selectedDate != null) {
+    if (selected != null) {
       setState(() {
         _selectedDate = selected;
         selectedWeeksDays = Utils

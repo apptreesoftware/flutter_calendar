@@ -50,8 +50,7 @@ class Utils {
   }
 
   static DateTime firstDayOfWeek(DateTime day) {
-    // DateTime.weekday on sunday == 7,
-    // but sunday is the beginning of the week for us
+    day = day.add(new Duration(hours: 12));
     var decreaseNum = day.weekday % 7;
     return day.subtract(new Duration(days: decreaseNum));
   }
