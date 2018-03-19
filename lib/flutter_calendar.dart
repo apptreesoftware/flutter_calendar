@@ -11,12 +11,18 @@ class Calendar extends StatefulWidget {
   final ValueChanged<Map<String, DateTime>> onSelectedRangeChange;
   final bool isExpandable;
   final DayBuilder dayBuilder;
+  final bool showChevronsToChangeRange;
+  final bool showTodayAction;
+  final bool showCalendarPickerIcon;
 
   Calendar({
     this.onDateSelected,
     this.onSelectedRangeChange,
     this.isExpandable: false,
     this.dayBuilder,
+    this.showTodayAction: true,
+    this.showChevronsToChangeRange: true,
+    this.showCalendarPickerIcon: true,
   });
 
   @override
@@ -48,40 +54,57 @@ class _CalendarState extends State<Calendar> {
     _selectedDate = today;
   }
 
-  Widget get monthNameRow {
-    var leftIcon;
-    var rightIcon;
-    if (widget.isExpandable) {
-      leftIcon = new IconButton(
+  Widget get nameAndIconRow {
+    var leftInnerIcon;
+    var rightInnerIcon;
+    var leftOuterIcon;
+    var rightOuterIcon;
+
+    if (widget.showCalendarPickerIcon) {
+      rightInnerIcon = new IconButton(
+        onPressed: () => selectDateFromPicker(),
+        icon: new Icon(Icons.calendar_today),
+      );
+    } else {
+      rightInnerIcon = new Container();
+    }
+
+    if (widget.showChevronsToChangeRange) {
+      leftOuterIcon = new IconButton(
         onPressed: isExpanded ? previousMonth : previousWeek,
         icon: new Icon(Icons.chevron_left),
       );
-      rightIcon = new IconButton(
+      rightOuterIcon = new IconButton(
         onPressed: isExpanded ? nextMonth : nextWeek,
         icon: new Icon(Icons.chevron_right),
       );
     } else {
-      leftIcon = new InkWell(
+      leftOuterIcon = new Container();
+      rightOuterIcon = new Container();
+    }
+
+    if (widget.showTodayAction) {
+      leftInnerIcon = new InkWell(
         child: new Text('Today'),
         onTap: resetToToday,
       );
-      rightIcon = new IconButton(
-        onPressed: () => selectDateFromPicker(),
-        icon: new Icon(Icons.calendar_today),
-      );
+    } else {
+      leftInnerIcon = new Container();
     }
 
     return new Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        leftIcon,
+        leftOuterIcon ?? new Container(),
+        leftInnerIcon ?? new Container(),
         new Text(
           Utils.formatMonth(Utils.firstDayOfWeek(today)),
           style: new TextStyle(
             fontSize: 20.0,
           ),
         ),
-        rightIcon
+        rightInnerIcon ?? new Container(),
+        rightOuterIcon ?? new Container(),
       ],
     );
   }
@@ -195,7 +218,7 @@ class _CalendarState extends State<Calendar> {
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          monthNameRow,
+          nameAndIconRow,
           new ExpansionCrossFade(
             collapsed: calendarGridView,
             expanded: calendarGridView,
@@ -208,6 +231,7 @@ class _CalendarState extends State<Calendar> {
   }
 
   void resetToToday() {
+    print('RESETTING');
     today = new DateTime.now();
     var firstDayOfCurrentWeek = Utils.firstDayOfWeek(today);
     var lastDayOfCurrentWeek = Utils.lastDayOfWeek(today);
@@ -266,13 +290,13 @@ class _CalendarState extends State<Calendar> {
   }
 
   void updateSelectedRange(DateTime start, DateTime end) {
-      selectedRange = {
-        'start': start,
-        'end': end,
-      };
-      if (widget.onSelectedRangeChange != null) {
-        widget.onSelectedRangeChange(selectedRange);
-      }
+    selectedRange = {
+      'start': start,
+      'end': end,
+    };
+    if (widget.onSelectedRangeChange != null) {
+      widget.onSelectedRangeChange(selectedRange);
+    }
   }
 
   Future<Null> selectDateFromPicker() async {
