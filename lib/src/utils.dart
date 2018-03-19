@@ -57,7 +57,8 @@ class Utils {
   }
 
   static DateTime lastDayOfWeek(DateTime day) {
-    return day.add(new Duration(days: 7 - day.weekday));
+    var increaseNum = day.weekday % 7;
+    return day.add(new Duration(days: 7 - increaseNum));
   }
 
   /// The last day of a given month

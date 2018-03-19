@@ -25,7 +25,14 @@ void main() {
       });
     }
 
-    // Test 100 Days
+    for (var i = 0; i < 7; i++) {
+      test('Utils.lastDayOfWeek', () {
+        expect(Utils.lastDayOfWeek(testDates[i]).day,
+            testDates[6].add(new Duration(days: 1)).day);
+      });
+    }
+
+    // Test 100 Days for the right length
     for (var i = 0; i < 100; i++) {
       test('datesInRange()', () {
         var date = new DateTime.now();

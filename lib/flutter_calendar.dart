@@ -231,7 +231,6 @@ class _CalendarState extends State<Calendar> {
   }
 
   void resetToToday() {
-    print('RESETTING');
     today = new DateTime.now();
     var firstDayOfCurrentWeek = Utils.firstDayOfWeek(today);
     var lastDayOfCurrentWeek = Utils.lastDayOfWeek(today);
