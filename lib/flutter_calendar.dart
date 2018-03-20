@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:tuple/tuple.dart';
 import 'package:flutter_calendar/calendar_tile.dart';
 import 'package:flutter_calendar/src/utils.dart';
 
@@ -8,7 +9,7 @@ typedef DayBuilder(BuildContext context, DateTime day);
 
 class Calendar extends StatefulWidget {
   final ValueChanged<DateTime> onDateSelected;
-  final ValueChanged<Map<String, DateTime>> onSelectedRangeChange;
+  final ValueChanged<Tuple2<DateTime, DateTime>> onSelectedRangeChange;
   final bool isExpandable;
   final DayBuilder dayBuilder;
   final bool showChevronsToChangeRange;
@@ -35,7 +36,7 @@ class _CalendarState extends State<Calendar> {
   List<DateTime> selectedMonthsDays;
   Iterable<DateTime> selectedWeeksDays;
   DateTime _selectedDate;
-  Map<String, DateTime> selectedRange;
+  Tuple2<DateTime, DateTime> selectedRange;
   String currentMonth;
   bool isExpanded = false;
   String displayMonth;
@@ -296,10 +297,7 @@ class _CalendarState extends State<Calendar> {
   }
 
   void updateSelectedRange(DateTime start, DateTime end) {
-    selectedRange = {
-      'start': start,
-      'end': end,
-    };
+    selectedRange = new Tuple2<DateTime, DateTime>(start, end);
     if (widget.onSelectedRangeChange != null) {
       widget.onSelectedRangeChange(selectedRange);
     }

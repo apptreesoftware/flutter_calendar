@@ -8,6 +8,7 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.15.0
+  tuple: ^1.0.0
 
 dev_dependencies:
   flutter_test:
