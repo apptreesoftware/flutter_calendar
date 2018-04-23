@@ -311,10 +311,13 @@ class _CalendarState extends State<Calendar> {
       lastDate: new DateTime(2050),
     );
 
-    var firstDayOfCurrentWeek = Utils.firstDayOfWeek(selected);
-    var lastDayOfCurrentWeek = Utils.lastDayOfWeek(selected);
+
 
     if (selected != null) {
+      var firstDayOfCurrentWeek = Utils.firstDayOfWeek(selected);
+      var lastDayOfCurrentWeek = Utils.lastDayOfWeek(selected);
+
+
       setState(() {
         _selectedDate = selected;
         selectedWeeksDays = Utils
