@@ -169,8 +169,8 @@ class _CalendarState extends State<Calendar> {
           dayWidgets.add(
             new Stack(
               children: <Widget>[
-                widget.dayBuilder(context, day),
                 tile,
+                widget.dayBuilder(context, day),
               ],
             ),
           );
