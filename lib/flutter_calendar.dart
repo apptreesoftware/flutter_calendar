@@ -5,12 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_calendar/calendar_tile.dart';
 import 'package:tuple/tuple.dart';
 
-typedef DayBuilder(BuildContext context, DateTime day);
+typedef DayBuilder(BuildContext context, DateTime day, bool isExpanded);
 
 class Calendar extends StatefulWidget {
   final ValueChanged<DateTime> onDateSelected;
   final ValueChanged<Tuple2<DateTime, DateTime>> onSelectedRangeChange;
-  final ValueChanged<bool> onExpanded;
   final bool isExpandable;
   final DayBuilder dayBuilder;
   final bool showChevronsToChangeRange;
@@ -20,7 +19,6 @@ class Calendar extends StatefulWidget {
   Calendar({
     this.onDateSelected,
     this.onSelectedRangeChange,
-    this.onExpanded,
     this.isExpandable: false,
     this.dayBuilder,
     this.showTodayAction: true,
@@ -164,7 +162,7 @@ class _CalendarState extends State<Calendar> {
         if (this.widget.dayBuilder != null) {
           dayWidgets.add(
             new CalendarTile(
-              child: this.widget.dayBuilder(context, day),
+              child: this.widget.dayBuilder(context, day, isExpanded),
             ),
           );
         } else {
@@ -360,7 +358,6 @@ class _CalendarState extends State<Calendar> {
   void toggleExpanded() {
     if (widget.isExpandable) {
       setState(() => isExpanded = !isExpanded);
-      if (widget.onExpanded != null) widget.onExpanded(isExpanded);
     }
   }
 
