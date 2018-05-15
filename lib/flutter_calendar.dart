@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_calendar/calendar_tile.dart';
 import 'package:tuple/tuple.dart';
 
-typedef DayBuilder(BuildContext context, DateTime day,
-    {bool isExpanded, DateTime selectedDate});
+typedef DayBuilder(BuildContext context, DateTime day);
 
 class Calendar extends StatefulWidget {
   final ValueChanged<DateTime> onDateSelected;
@@ -160,26 +159,24 @@ class _CalendarState extends State<Calendar> {
           monthStarted = true;
         }
 
+        final tile = new CalendarTile(
+          onDateSelected: () => handleSelectedDateAndUserCallback(day),
+          date: day,
+          dateStyles: configureDateStyle(monthStarted, monthEnded),
+          isSelected: Utils.isSameDay(selectedDate, day),
+        );
+
         if (this.widget.dayBuilder != null) {
           dayWidgets.add(
-            new CalendarTile(
-              child: this.widget.dayBuilder(
-                    context,
-                    day,
-                    isExpanded: isExpanded,
-                    selectedDate: selectedDate,
-                  ),
+            new Stack(
+              children: <Widget>[
+                widget.dayBuilder(context, day),
+                tile,
+              ],
             ),
           );
         } else {
-          dayWidgets.add(
-            new CalendarTile(
-              onDateSelected: () => handleSelectedDateAndUserCallback(day),
-              date: day,
-              dateStyles: configureDateStyle(monthStarted, monthEnded),
-              isSelected: Utils.isSameDay(selectedDate, day),
-            ),
-          );
+          dayWidgets.add(tile);
         }
       },
     );
