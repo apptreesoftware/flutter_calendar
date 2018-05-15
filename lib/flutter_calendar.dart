@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_calendar/calendar_tile.dart';
 import 'package:tuple/tuple.dart';
 
-typedef DayBuilder(BuildContext context, DateTime day, bool isExpanded);
+typedef DayBuilder(BuildContext context, DateTime day,
+    {bool isExpanded, DateTime selectedDate});
 
 class Calendar extends StatefulWidget {
   final ValueChanged<DateTime> onDateSelected;
@@ -162,7 +163,12 @@ class _CalendarState extends State<Calendar> {
         if (this.widget.dayBuilder != null) {
           dayWidgets.add(
             new CalendarTile(
-              child: this.widget.dayBuilder(context, day, isExpanded),
+              child: this.widget.dayBuilder(
+                    context,
+                    day,
+                    isExpanded: isExpanded,
+                    selectedDate: selectedDate,
+                  ),
             ),
           );
         } else {
