@@ -165,7 +165,6 @@ class _CalendarState extends State<Calendar> {
           dateStyles: configureDateStyle(monthStarted, monthEnded),
           isSelected: Utils.isSameDay(selectedDate, day),
         );
-
         if (this.widget.dayBuilder != null) {
           dayWidgets.add(
             new Stack(
