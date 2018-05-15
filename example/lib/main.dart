@@ -48,7 +48,7 @@ class CalendarViewApp extends StatelessWidget {
                 onSelectedRangeChange: (range) => print(range),
                 isExpandable: true,
                 dayBuilder:
-                    (BuildContext context, DateTime day, bool isExpanded) {
+                    (BuildContext context, DateTime day, {bool isExpanded, DateTime selectedDate,}) {
                   return new InkWell(
                     onTap: () => print(day),
                     child: new Container(
