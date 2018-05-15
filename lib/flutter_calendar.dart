@@ -361,6 +361,15 @@ class _CalendarState extends State<Calendar> {
   void toggleExpanded() {
     if (widget.isExpandable) {
       setState(() => isExpanded = !isExpanded);
+      if (isExpanded) {
+        var firstDateOfNewMonth = Utils.firstDayOfMonth(today);
+        var lastDateOfNewMonth = Utils.lastDayOfMonth(today);
+        updateSelectedRange(firstDateOfNewMonth, lastDateOfNewMonth);
+      } else {
+        var firstDayOfCurrentWeek = Utils.firstDayOfWeek(today);
+        var lastDayOfCurrentWeek = Utils.lastDayOfWeek(today);
+        updateSelectedRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek);
+      }
     }
   }
 
