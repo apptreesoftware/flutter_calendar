@@ -332,6 +332,9 @@ class _CalendarState extends State<Calendar> {
             .daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
             .toList();
         displayMonth = Utils.formatMonth(Utils.firstDayOfWeek(selected));
+        if (widget.onDateSelected != null) {
+          widget.onDateSelected(_selectedDate);
+        }
       });
     }
   }
