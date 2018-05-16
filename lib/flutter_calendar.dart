@@ -328,11 +328,11 @@ class _CalendarState extends State<Calendar> {
 
       setState(() {
         _selectedDate = selected;
-        _updateSelectedRange();
         selectedWeeksDays = Utils
             .daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
             .toList();
         displayMonth = Utils.formatMonth(Utils.firstDayOfWeek(selected));
+        _updateSelectedRange();
       });
       if (widget.onDateSelected != null) {
         widget.onDateSelected(_selectedDate);
