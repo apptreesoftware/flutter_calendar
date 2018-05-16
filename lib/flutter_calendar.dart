@@ -266,7 +266,7 @@ class _CalendarState extends State<Calendar> {
       var lastDateOfNewMonth = Utils.lastDayOfMonth(today);
       updateSelectedRange(firstDateOfNewMonth, lastDateOfNewMonth);
       selectedMonthsDays = Utils.daysInMonth(today);
-      displayMonth = Utils.formatMonth(Utils.firstDayOfWeek(today));
+      displayMonth = Utils.formatMonth(today);
     });
   }
 
@@ -277,7 +277,7 @@ class _CalendarState extends State<Calendar> {
       var lastDateOfNewMonth = Utils.lastDayOfMonth(today);
       updateSelectedRange(firstDateOfNewMonth, lastDateOfNewMonth);
       selectedMonthsDays = Utils.daysInMonth(today);
-      displayMonth = Utils.formatMonth(Utils.firstDayOfWeek(today));
+      displayMonth = Utils.formatMonth(today);
     });
   }
 
