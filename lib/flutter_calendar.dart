@@ -328,12 +328,11 @@ class _CalendarState extends State<Calendar> {
 
       setState(() {
         _selectedDate = selected;
-        _updateSelectedRange();
+        _updateSelectedRangeFromSelectedDate();
         selectedWeeksDays = Utils
             .daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
             .toList();
         displayMonth = Utils.formatMonth(Utils.firstDayOfWeek(selected));
-
       });
       if (widget.onDateSelected != null) {
         widget.onDateSelected(_selectedDate);
@@ -371,14 +370,14 @@ class _CalendarState extends State<Calendar> {
     }
   }
 
-  void _updateSelectedRange() {
+  void _updateSelectedRangeFromSelectedDate() {
     if (isExpanded) {
-      var firstDateOfNewMonth = Utils.firstDayOfMonth(today);
-      var lastDateOfNewMonth = Utils.lastDayOfMonth(today);
+      var firstDateOfNewMonth = Utils.firstDayOfMonth(_selectedDate);
+      var lastDateOfNewMonth = Utils.lastDayOfMonth(_selectedDate);
       updateSelectedRange(firstDateOfNewMonth, lastDateOfNewMonth);
     } else {
-      var firstDayOfCurrentWeek = Utils.firstDayOfWeek(today);
-      var lastDayOfCurrentWeek = Utils.lastDayOfWeek(today);
+      var firstDayOfCurrentWeek = Utils.firstDayOfWeek(_selectedDate);
+      var lastDayOfCurrentWeek = Utils.lastDayOfWeek(_selectedDate);
       updateSelectedRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek);
     }
   }
@@ -386,7 +385,7 @@ class _CalendarState extends State<Calendar> {
   void toggleExpanded() {
     if (widget.isExpandable) {
       setState(() => isExpanded = !isExpanded);
-      _updateSelectedRange();
+      _updateSelectedRangeFromSelectedDate();
     }
   }
 
