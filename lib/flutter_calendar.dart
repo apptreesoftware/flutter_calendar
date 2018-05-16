@@ -255,6 +255,8 @@ class _CalendarState extends State<Calendar> {
           .toList();
       displayMonth = Utils.formatMonth(Utils.firstDayOfWeek(today));
     });
+    _updateSelectedRange();
+    if (widget.onDateSelected != null) widget.onDateSelected(_selectedDate);
   }
 
   void nextMonth() {
