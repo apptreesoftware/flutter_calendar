@@ -176,7 +176,12 @@ class _CalendarState extends State<Calendar> {
             ),
           );
         } else {
-          dayWidgets.add(tile);
+          dayWidgets.add(new Container(
+            decoration: new BoxDecoration(
+              color: Colors.white,
+            ),
+            child: tile,
+          ));
         }
       },
     );
