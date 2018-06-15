@@ -244,6 +244,8 @@ class _CalendarState extends State<Calendar> {
           .toList();
       displayMonth = Utils.formatMonth(Utils.firstDayOfWeek(today));
     });
+
+    _launchDateSelectionCallback(today);
   }
 
   void nextMonth() {
@@ -325,6 +327,8 @@ class _CalendarState extends State<Calendar> {
             .toList();
         displayMonth = Utils.formatMonth(Utils.firstDayOfWeek(selected));
       });
+
+      _launchDateSelectionCallback(selected);
     }
   }
 
@@ -373,6 +377,10 @@ class _CalendarState extends State<Calendar> {
           .daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
           .toList();
     });
+    _launchDateSelectionCallback(day);
+  }
+
+  void _launchDateSelectionCallback(DateTime day) {
     if (widget.onDateSelected != null) {
       widget.onDateSelected(day);
     }
