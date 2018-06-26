@@ -15,6 +15,7 @@ class Calendar extends StatefulWidget {
   final bool showChevronsToChangeRange;
   final bool showTodayAction;
   final bool showCalendarPickerIcon;
+  final DateTime date;
 
   Calendar({
     this.onDateSelected,
@@ -24,10 +25,12 @@ class Calendar extends StatefulWidget {
     this.showTodayAction: true,
     this.showChevronsToChangeRange: true,
     this.showCalendarPickerIcon: true,
+    this.date
   });
 
   @override
   _CalendarState createState() => new _CalendarState();
+
 }
 
 class _CalendarState extends State<Calendar> {
@@ -45,6 +48,7 @@ class _CalendarState extends State<Calendar> {
 
   void initState() {
     super.initState();
+    if(widget.date != null) today = widget.date;
     selectedMonthsDays = Utils.daysInMonth(today);
     var firstDayOfCurrentWeek = Utils.firstDayOfWeek(today);
     var lastDayOfCurrentWeek = Utils.lastDayOfWeek(today);
@@ -377,6 +381,7 @@ class _CalendarState extends State<Calendar> {
       selectedWeeksDays = Utils
           .daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
           .toList();
+      selectedMonthsDays = Utils.daysInMonth(day);
     });
     _launchDateSelectionCallback(day);
   }
