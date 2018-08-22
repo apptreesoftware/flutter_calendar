@@ -57,7 +57,7 @@ class _CalendarState extends State<Calendar> {
         .toList()
         .sublist(0, 7);
     _selectedDate = today;
-    displayMonth = Utils.formatMonth(Utils.firstDayOfWeek(today));
+    displayMonth = Utils.formatMonth(today);
   }
 
   Widget get nameAndIconRow {
@@ -125,7 +125,7 @@ class _CalendarState extends State<Calendar> {
         child: new GridView.count(
           shrinkWrap: true,
           crossAxisCount: 7,
-          childAspectRatio: 1.5,
+          childAspectRatio: 1.0,
           mainAxisSpacing: 0.0,
           padding: new EdgeInsets.only(bottom: 0.0),
           children: calendarBuilder(),
@@ -246,7 +246,7 @@ class _CalendarState extends State<Calendar> {
       selectedWeeksDays = Utils
           .daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
           .toList();
-      displayMonth = Utils.formatMonth(Utils.firstDayOfWeek(today));
+      displayMonth = Utils.formatMonth(today);
     });
 
     _launchDateSelectionCallback(today);
@@ -259,7 +259,7 @@ class _CalendarState extends State<Calendar> {
       var lastDateOfNewMonth = Utils.lastDayOfMonth(today);
       updateSelectedRange(firstDateOfNewMonth, lastDateOfNewMonth);
       selectedMonthsDays = Utils.daysInMonth(today);
-      displayMonth = Utils.formatMonth(Utils.firstDayOfWeek(today));
+      displayMonth = Utils.formatMonth(today);
     });
   }
 
@@ -270,7 +270,7 @@ class _CalendarState extends State<Calendar> {
       var lastDateOfNewMonth = Utils.lastDayOfMonth(today);
       updateSelectedRange(firstDateOfNewMonth, lastDateOfNewMonth);
       selectedMonthsDays = Utils.daysInMonth(today);
-      displayMonth = Utils.formatMonth(Utils.firstDayOfWeek(today));
+      displayMonth = Utils.formatMonth(today);
     });
   }
 
@@ -284,7 +284,7 @@ class _CalendarState extends State<Calendar> {
           .daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
           .toList()
           .sublist(0, 7);
-      displayMonth = Utils.formatMonth(Utils.firstDayOfWeek(today));
+      displayMonth = Utils.formatMonth(firstDayOfCurrentWeek);
     });
   }
 
@@ -298,7 +298,7 @@ class _CalendarState extends State<Calendar> {
           .daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
           .toList()
           .sublist(0, 7);
-      displayMonth = Utils.formatMonth(Utils.firstDayOfWeek(today));
+      displayMonth = Utils.formatMonth(lastDayOfCurrentWeek);
     });
   }
 
@@ -330,7 +330,7 @@ class _CalendarState extends State<Calendar> {
             .daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
             .toList();
         selectedMonthsDays = Utils.daysInMonth(selected);
-        displayMonth = Utils.formatMonth(Utils.firstDayOfWeek(selected));
+        displayMonth = Utils.formatMonth(selected);
       });
 
       _launchDateSelectionCallback(selected);
@@ -382,6 +382,7 @@ class _CalendarState extends State<Calendar> {
           .daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
           .toList();
       selectedMonthsDays = Utils.daysInMonth(day);
+      displayMonth = Utils.formatMonth(day);
     });
     _launchDateSelectionCallback(day);
   }
