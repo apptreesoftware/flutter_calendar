@@ -5,7 +5,7 @@ author: Eric Windmill <ericwindmill.com>
 homepage: https://github.com/apptreesoftware/flutter_calendar
 
 environment:
-  sdk: ">=1.8.0.0 <2.0.0"
+  sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
   flutter:
