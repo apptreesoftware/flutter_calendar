@@ -36,11 +36,9 @@ class _CalendarState extends State<Calendar> {
   List<DateTime> selectedMonthsDays;
   Iterable<DateTime> selectedWeeksDays;
   DateTime _selectedDate = new DateTime.now();
-  Tuple2<DateTime, DateTime> selectedRange;
   String currentMonth;
   bool isExpanded = false;
   String displayMonth;
-
   DateTime get selectedDate => _selectedDate;
 
   void initState() {
