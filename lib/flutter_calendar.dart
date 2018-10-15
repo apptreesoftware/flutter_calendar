@@ -160,6 +160,8 @@ class _CalendarState extends State<Calendar> {
           dayWidgets.add(
             new CalendarTile(
               child: this.widget.dayBuilder(context, day),
+              date: day,
+              onDateSelected: () => handleSelectedDateAndUserCallback(day),
             ),
           );
         } else {
@@ -278,6 +280,7 @@ class _CalendarState extends State<Calendar> {
               .sublist(0, 7);
       displayMonth = Utils.formatMonth(_selectedDate);
     });
+    _launchDateSelectionCallback(_selectedDate);
   }
 
   void previousWeek() {
@@ -292,6 +295,7 @@ class _CalendarState extends State<Calendar> {
               .sublist(0, 7);
       displayMonth = Utils.formatMonth(_selectedDate);
     });
+    _launchDateSelectionCallback(_selectedDate);
   }
 
   void updateSelectedRange(DateTime start, DateTime end) {
@@ -365,6 +369,7 @@ class _CalendarState extends State<Calendar> {
   }
 
   void handleSelectedDateAndUserCallback(DateTime day) {
+    print("Here");
     var firstDayOfCurrentWeek = Utils.firstDayOfWeek(day);
     var lastDayOfCurrentWeek = Utils.lastDayOfWeek(day);
     setState(() {
