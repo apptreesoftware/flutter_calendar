@@ -369,7 +369,6 @@ class _CalendarState extends State<Calendar> {
   }
 
   void handleSelectedDateAndUserCallback(DateTime day) {
-    print("Here");
     var firstDayOfCurrentWeek = Utils.firstDayOfWeek(day);
     var lastDayOfCurrentWeek = Utils.lastDayOfWeek(day);
     setState(() {
