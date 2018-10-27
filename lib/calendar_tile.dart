@@ -46,7 +46,7 @@ class CalendarTile extends StatelessWidget {
           alignment: Alignment.center,
           child: new Text(
             Utils.formatDay(date).toString(),
-            style: isSelected ? new TextStyle(color: Colors.white) : dateStyles,
+            style: isSelected ? Theme.of(context).primaryTextTheme.body1 : dateStyles,
             textAlign: TextAlign.center,
           ),
         ),
@@ -63,9 +63,6 @@ class CalendarTile extends StatelessWidget {
       );
     }
     return new Container(
-      decoration: new BoxDecoration(
-        color: Colors.white,
-      ),
       child: renderDateOrDayOfWeek(context),
     );
   }

@@ -15,6 +15,7 @@ class CalendarViewApp extends StatelessWidget {
     return new MaterialApp(
       title: 'Flutter Demo',
       theme: new ThemeData(
+        brightness: Brightness.dark,
         primarySwatch: Colors.purple,
       ),
       home: new Scaffold(
