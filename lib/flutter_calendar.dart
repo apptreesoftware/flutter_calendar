@@ -181,12 +181,23 @@ class _CalendarState extends State<Calendar> {
 
   TextStyle configureDateStyle(monthStarted, monthEnded) {
     TextStyle dateStyles;
+    final TextStyle body1Style = Theme.of(context).textTheme.body1;
+
     if (isExpanded) {
+      final TextStyle body1StyleDisabled = body1Style.copyWith(
+        color: Color.fromARGB(
+          100, 
+          body1Style.color.red, 
+          body1Style.color.green, 
+          body1Style.color.blue,
+        )
+      );
+
       dateStyles = monthStarted && !monthEnded
-          ? new TextStyle(color: Colors.black)
-          : new TextStyle(color: Colors.black38);
+          ? body1Style
+          : body1StyleDisabled;
     } else {
-      dateStyles = new TextStyle(color: Colors.black);
+      dateStyles = body1Style;
     }
     return dateStyles;
   }
