@@ -40,7 +40,9 @@ new Calendar(
 ```dart
 new Calendar(
   // A builder function that renders each calendar tile how you'd like.
-  dayBuilder: new Text('!')
+  dayBuilder: (BuildContext context, DateTime day) {
+      return new Text("!");
+  },
 )
 ```
 
