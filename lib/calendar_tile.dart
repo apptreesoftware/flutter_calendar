@@ -23,6 +23,7 @@ class CalendarTile extends StatelessWidget {
   });
 
   Widget renderDateOrDayOfWeek(BuildContext context) {
+
     if (isDayOfWeek) {
       return new InkWell(
         child: new Container(
@@ -40,20 +41,35 @@ class CalendarTile extends StatelessWidget {
           decoration: isSelected
               ? new BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Theme.of(context).primaryColor,
+                  color: const Color.fromRGBO(204, 204, 204, 0.3),
                 )
               : new BoxDecoration(),
           alignment: Alignment.center,
-          child: new Text(
-            Utils.formatDay(date).toString(),
-            style: isSelected ? Theme.of(context).primaryTextTheme.body1 : dateStyles,
-            textAlign: TextAlign.center,
-          ),
+          child: new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                new Text(
+                  Utils.formatDay(date).toString(),
+                  style: new TextStyle(
+                      fontSize: 12.0, fontWeight: FontWeight.w400),
+                ),
+                Utils.fullDayFormat(date).toString() == Utils.fullDayFormat(DateTime.now()).toString()
+                    ? new Container(
+                        padding: new EdgeInsets.only(top: 3.0),
+                        width: 3.0,
+                        height: 3.0,
+                        decoration: new BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: const Color.fromRGBO(247, 64, 106,1.0), // cor da marcacao do dia de hoje
+                        ),
+                      )
+                    : new Container()
+              ],
+            ),
         ),
       );
     }
   }
-
   @override
   Widget build(BuildContext context) {
     if (child != null) {
