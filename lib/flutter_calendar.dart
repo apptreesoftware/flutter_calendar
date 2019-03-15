@@ -16,11 +16,13 @@ class Calendar extends StatefulWidget {
   final bool showTodayAction;
   final bool showCalendarPickerIcon;
   final DateTime initialCalendarDateOverride;
+  final Map events;
 
   Calendar(
       {this.onDateSelected,
       this.onSelectedRangeChange,
       this.isExpandable: false,
+      this.events,
       this.dayBuilder,
       this.showTodayAction: true,
       this.showChevronsToChangeRange: true,
@@ -136,6 +138,7 @@ class _CalendarState extends State<Calendar> {
       (day) {
         dayWidgets.add(
           new CalendarTile(
+            events: widget.events[day],
             isDayOfWeek: true,
             dayOfWeek: day,
           ),
@@ -159,6 +162,7 @@ class _CalendarState extends State<Calendar> {
         if (this.widget.dayBuilder != null) {
           dayWidgets.add(
             new CalendarTile(
+              events: widget.events[day],
               child: this.widget.dayBuilder(context, day),
               date: day,
               onDateSelected: () => handleSelectedDateAndUserCallback(day),
@@ -167,6 +171,7 @@ class _CalendarState extends State<Calendar> {
         } else {
           dayWidgets.add(
             new CalendarTile(
+              events: widget.events[day],
               onDateSelected: () => handleSelectedDateAndUserCallback(day),
               date: day,
               dateStyles: configureDateStyle(monthStarted, monthEnded),
@@ -185,17 +190,15 @@ class _CalendarState extends State<Calendar> {
 
     if (isExpanded) {
       final TextStyle body1StyleDisabled = body1Style.copyWith(
-        color: Color.fromARGB(
-          100, 
-          body1Style.color.red, 
-          body1Style.color.green, 
-          body1Style.color.blue,
-        )
-      );
+          color: Color.fromARGB(
+        100,
+        body1Style.color.red,
+        body1Style.color.green,
+        body1Style.color.blue,
+      ));
 
-      dateStyles = monthStarted && !monthEnded
-          ? body1Style
-          : body1StyleDisabled;
+      dateStyles =
+          monthStarted && !monthEnded ? body1Style : body1StyleDisabled;
     } else {
       dateStyles = body1Style;
     }
