@@ -7,6 +7,7 @@ class CalendarTile extends StatelessWidget {
   final String dayOfWeek;
   final bool isDayOfWeek;
   final bool isSelected;
+  final List<String> events;
   final TextStyle dayOfWeekStyles;
   final TextStyle dateStyles;
   final Widget child;
@@ -20,6 +21,7 @@ class CalendarTile extends StatelessWidget {
     this.dayOfWeekStyles,
     this.isDayOfWeek: false,
     this.isSelected: false,
+    this.events: null,
   });
 
   Widget renderDateOrDayOfWeek(BuildContext context) {
@@ -34,20 +36,40 @@ class CalendarTile extends StatelessWidget {
         ),
       );
     } else {
-      return new InkWell(
+      return InkWell(
         onTap: onDateSelected,
-        child: new Container(
+        child: Container(
           decoration: isSelected
-              ? new BoxDecoration(
+              ? BoxDecoration(
                   shape: BoxShape.circle,
                   color: Theme.of(context).primaryColor,
                 )
-              : new BoxDecoration(),
+              : BoxDecoration(),
           alignment: Alignment.center,
-          child: new Text(
-            Utils.formatDay(date).toString(),
-            style: isSelected ? Theme.of(context).primaryTextTheme.body1 : dateStyles,
-            textAlign: TextAlign.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                Utils.formatDay(date).toString(),
+                style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400),
+              ),
+              events != null && events.length > 0
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: events
+                          .map((event) => Container(
+                                margin: EdgeInsets.only(
+                                    left: 2.0, right: 2.0, top: 2.0),
+                                width: 4.0,
+                                height: 4.0,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Theme.of(context).accentColor,
+                                ),
+                              ))
+                          .toList())
+                  : Container(),
+            ],
           ),
         ),
       );
