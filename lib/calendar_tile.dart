@@ -7,7 +7,7 @@ class CalendarTile extends StatelessWidget {
   final String dayOfWeek;
   final bool isDayOfWeek;
   final bool isSelected;
-  final int events;
+  final List<String> events;
   final TextStyle dayOfWeekStyles;
   final TextStyle dateStyles;
   final Widget child;
@@ -21,11 +21,10 @@ class CalendarTile extends StatelessWidget {
     this.dayOfWeekStyles,
     this.isDayOfWeek: false,
     this.isSelected: false,
-    this.events: 0
+    this.events: null,
   });
 
   Widget renderDateOrDayOfWeek(BuildContext context) {
-
     if (isDayOfWeek) {
       return new InkWell(
         child: new Container(
@@ -48,30 +47,36 @@ class CalendarTile extends StatelessWidget {
               : BoxDecoration(),
           alignment: Alignment.center,
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  Utils.formatDay(date).toString(),
-                  style: TextStyle(
-                      fontSize: 12.0, fontWeight: FontWeight.w400),
-                ),
-                events > 0
-                  ? List.generate(events, (i) => Container(
-                        padding: EdgeInsets.only(top: 3.0),
-                        width: 3.0,
-                        height: 3.0,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: const Color.fromRGBO(247, 64, 106,1.0), // cor da marcacao do dia de hoje
-                        ),
-                      ),)
-                    : Container()
-              ],
-            ),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                Utils.formatDay(date).toString(),
+                style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400),
+              ),
+              events != null && events.length > 0
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: events
+                          .map((event) => Container(
+                                margin: EdgeInsets.only(
+                                    left: 2.0, right: 2.0, top: 2.0),
+                                width: 4.0,
+                                height: 4.0,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color:
+                                      const Color.fromRGBO(247, 64, 106, 1.0),
+                                ),
+                              ))
+                          .toList())
+                  : Container(),
+            ],
+          ),
         ),
       );
     }
   }
+
   @override
   Widget build(BuildContext context) {
     if (child != null) {
