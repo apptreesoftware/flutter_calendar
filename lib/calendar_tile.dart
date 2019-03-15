@@ -42,7 +42,7 @@ class CalendarTile extends StatelessWidget {
           decoration: isSelected
               ? BoxDecoration(
                   shape: BoxShape.circle,
-                  color: const Color.fromRGBO(204, 204, 204, 0.3),
+                  color: Theme.of(context).primaryColor,
                 )
               : BoxDecoration(),
           alignment: Alignment.center,
@@ -64,8 +64,7 @@ class CalendarTile extends StatelessWidget {
                                 height: 4.0,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color:
-                                      const Color.fromRGBO(247, 64, 106, 1.0),
+                                  color: Theme.of(context).accentColor,
                                 ),
                               ))
                           .toList())
