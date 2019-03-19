@@ -11,6 +11,10 @@ class CalendarTile extends StatelessWidget {
   final TextStyle dateStyles;
   final Widget child;
 
+  /// selectedDateCircleColor needs where needed customised color
+  /// instead of app theme color
+  final Color selectedDateCircleColor;
+
   CalendarTile({
     this.onDateSelected,
     this.date,
@@ -20,6 +24,7 @@ class CalendarTile extends StatelessWidget {
     this.dayOfWeekStyles,
     this.isDayOfWeek: false,
     this.isSelected: false,
+    this.selectedDateCircleColor,
   });
 
   Widget renderDateOrDayOfWeek(BuildContext context) {
@@ -40,13 +45,17 @@ class CalendarTile extends StatelessWidget {
           decoration: isSelected
               ? new BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Theme.of(context).primaryColor,
+                  color: this.selectedDateCircleColor == null
+                      ? Theme.of(context).primaryColor
+                      : this.selectedDateCircleColor,
                 )
               : new BoxDecoration(),
           alignment: Alignment.center,
           child: new Text(
             Utils.formatDay(date).toString(),
-            style: isSelected ? Theme.of(context).primaryTextTheme.body1 : dateStyles,
+            style: isSelected
+                ? Theme.of(context).primaryTextTheme.body1
+                : dateStyles,
             textAlign: TextAlign.center,
           ),
         ),

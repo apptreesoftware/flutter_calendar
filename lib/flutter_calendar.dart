@@ -16,16 +16,17 @@ class Calendar extends StatefulWidget {
   final bool showTodayAction;
   final bool showCalendarPickerIcon;
   final DateTime initialCalendarDateOverride;
+  final Color selectedDateCircleColor;
 
-  Calendar(
-      {this.onDateSelected,
-      this.onSelectedRangeChange,
-      this.isExpandable: false,
-      this.dayBuilder,
-      this.showTodayAction: true,
-      this.showChevronsToChangeRange: true,
-      this.showCalendarPickerIcon: true,
-      this.initialCalendarDateOverride});
+  Calendar({this.onDateSelected,
+    this.onSelectedRangeChange,
+    this.isExpandable: false,
+    this.dayBuilder,
+    this.showTodayAction: true,
+    this.showChevronsToChangeRange: true,
+    this.showCalendarPickerIcon: true,
+    this.initialCalendarDateOverride,
+    this.selectedDateCircleColor});
 
   @override
   _CalendarState createState() => new _CalendarState();
@@ -167,6 +168,7 @@ class _CalendarState extends State<Calendar> {
         } else {
           dayWidgets.add(
             new CalendarTile(
+              selectedDateCircleColor: widget.selectedDateCircleColor,
               onDateSelected: () => handleSelectedDateAndUserCallback(day),
               date: day,
               dateStyles: configureDateStyle(monthStarted, monthEnded),

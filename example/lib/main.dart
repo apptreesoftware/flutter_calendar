@@ -32,6 +32,7 @@ class CalendarViewApp extends StatelessWidget {
             children: <Widget>[
               new Text('The Default Calendar:'),
               new Calendar(
+                selectedDateCircleColor: Color.fromRGBO(159, 159, 59, 0.5),
                 onSelectedRangeChange: (range) =>
                     print("Range is ${range.item1}, ${range.item2}"),
                 onDateSelected: (date) => handleNewDate(date),
