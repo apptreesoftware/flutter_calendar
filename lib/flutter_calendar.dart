@@ -42,17 +42,7 @@ class _CalendarState extends State<Calendar> {
   DateTime get selectedDate => _selectedDate;
 
   void initState() {
-    super.initState();
-    if (widget.initialCalendarDateOverride != null)
-      _selectedDate = widget.initialCalendarDateOverride;
-    selectedMonthsDays = Utils.daysInMonth(_selectedDate);
-    var firstDayOfCurrentWeek = Utils.firstDayOfWeek(_selectedDate);
-    var lastDayOfCurrentWeek = Utils.lastDayOfWeek(_selectedDate);
-    selectedWeeksDays =
-        Utils.daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
-            .toList()
-            .sublist(0, 7);
-    displayMonth = Utils.formatMonth(_selectedDate);
+    super.initState();    
   }
 
   Widget get nameAndIconRow {
@@ -225,6 +215,16 @@ class _CalendarState extends State<Calendar> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.initialCalendarDateOverride != null)
+      _selectedDate = widget.initialCalendarDateOverride;
+    selectedMonthsDays = Utils.daysInMonth(_selectedDate);
+    var firstDayOfCurrentWeek = Utils.firstDayOfWeek(_selectedDate);
+    var lastDayOfCurrentWeek = Utils.lastDayOfWeek(_selectedDate);
+    selectedWeeksDays =
+        Utils.daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
+            .toList()
+            .sublist(0, 7);
+    displayMonth = Utils.formatMonth(_selectedDate);
     return new Container(
       child: new Column(
         mainAxisAlignment: MainAxisAlignment.start,
