@@ -1,0 +1,164 @@
+{
+  "configVersion": 2,
+  "packages": [
+    {
+      "name": "async",
+      "rootUri": "file:///C:/Users/Mica/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/async-2.5.0-nullsafety",
+      "packageUri": "lib/",
+      "languageVersion": "2.10"
+    },
+    {
+      "name": "boolean_selector",
+      "rootUri": "file:///C:/Users/Mica/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/boolean_selector-2.1.0-nullsafety",
+      "packageUri": "lib/",
+      "languageVersion": "2.10"
+    },
+    {
+      "name": "characters",
+      "rootUri": "file:///C:/Users/Mica/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/characters-1.1.0-nullsafety.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.10"
+    },
+    {
+      "name": "charcode",
+      "rootUri": "file:///C:/Users/Mica/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/charcode-1.2.0-nullsafety",
+      "packageUri": "lib/",
+      "languageVersion": "2.10"
+    },
+    {
+      "name": "clock",
+      "rootUri": "file:///C:/Users/Mica/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/clock-1.1.0-nullsafety",
+      "packageUri": "lib/",
+      "languageVersion": "2.10"
+    },
+    {
+      "name": "collection",
+      "rootUri": "file:///C:/Users/Mica/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/collection-1.15.0-nullsafety.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.10"
+    },
+    {
+      "name": "date_utils",
+      "rootUri": "file:///C:/Users/Mica/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/date_utils-0.1.0+2",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "fake_async",
+      "rootUri": "file:///C:/Users/Mica/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/fake_async-1.1.0-nullsafety",
+      "packageUri": "lib/",
+      "languageVersion": "2.10"
+    },
+    {
+      "name": "flutter",
+      "rootUri": "file:///C:/Users/Mica/Documents/dev-softwares/flutter_windows_v1.12.13+hotfix.9-stable/flutter/packages/flutter",
+      "packageUri": "lib/",
+      "languageVersion": "2.10"
+    },
+    {
+      "name": "flutter_test",
+      "rootUri": "file:///C:/Users/Mica/Documents/dev-softwares/flutter_windows_v1.12.13+hotfix.9-stable/flutter/packages/flutter_test",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
+    },
+    {
+      "name": "intl",
+      "rootUri": "file:///C:/Users/Mica/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/intl-0.15.8",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "matcher",
+      "rootUri": "file:///C:/Users/Mica/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/matcher-0.12.10-nullsafety",
+      "packageUri": "lib/",
+      "languageVersion": "2.10"
+    },
+    {
+      "name": "meta",
+      "rootUri": "file:///C:/Users/Mica/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/meta-1.3.0-nullsafety.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.10"
+    },
+    {
+      "name": "path",
+      "rootUri": "file:///C:/Users/Mica/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/path-1.8.0-nullsafety",
+      "packageUri": "lib/",
+      "languageVersion": "2.10"
+    },
+    {
+      "name": "quiver",
+      "rootUri": "file:///C:/Users/Mica/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/quiver-2.1.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "sky_engine",
+      "rootUri": "file:///C:/Users/Mica/Documents/dev-softwares/flutter_windows_v1.12.13+hotfix.9-stable/flutter/bin/cache/pkg/sky_engine",
+      "packageUri": "lib/",
+      "languageVersion": "1.11"
+    },
+    {
+      "name": "source_span",
+      "rootUri": "file:///C:/Users/Mica/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/source_span-1.8.0-nullsafety",
+      "packageUri": "lib/",
+      "languageVersion": "2.10"
+    },
+    {
+      "name": "stack_trace",
+      "rootUri": "file:///C:/Users/Mica/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/stack_trace-1.10.0-nullsafety",
+      "packageUri": "lib/",
+      "languageVersion": "2.10"
+    },
+    {
+      "name": "stream_channel",
+      "rootUri": "file:///C:/Users/Mica/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/stream_channel-2.1.0-nullsafety",
+      "packageUri": "lib/",
+      "languageVersion": "2.10"
+    },
+    {
+      "name": "string_scanner",
+      "rootUri": "file:///C:/Users/Mica/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/string_scanner-1.1.0-nullsafety",
+      "packageUri": "lib/",
+      "languageVersion": "2.10"
+    },
+    {
+      "name": "term_glyph",
+      "rootUri": "file:///C:/Users/Mica/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/term_glyph-1.2.0-nullsafety",
+      "packageUri": "lib/",
+      "languageVersion": "2.10"
+    },
+    {
+      "name": "test_api",
+      "rootUri": "file:///C:/Users/Mica/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/test_api-0.2.19-nullsafety",
+      "packageUri": "lib/",
+      "languageVersion": "2.10"
+    },
+    {
+      "name": "tuple",
+      "rootUri": "file:///C:/Users/Mica/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/tuple-1.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "typed_data",
+      "rootUri": "file:///C:/Users/Mica/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/typed_data-1.3.0-nullsafety.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.10"
+    },
+    {
+      "name": "vector_math",
+      "rootUri": "file:///C:/Users/Mica/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/vector_math-2.1.0-nullsafety.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.10"
+    },
+    {
+      "name": "flutter_calendar",
+      "rootUri": "../",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    }
+  ],
+  "generated": "2020-08-05T14:19:04.399704Z",
+  "generator": "pub",
+  "generatorVersion": "2.10.0-3.0.dev.flutter-363c72111d"
+}
