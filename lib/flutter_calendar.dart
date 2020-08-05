@@ -13,6 +13,7 @@ class Calendar extends StatefulWidget {
   final bool isExpandable;
   final DayBuilder dayBuilder;
   final bool showChevronsToChangeRange;
+  final bool showTitle;
   final bool showTodayAction;
   final bool showCalendarPickerIcon;
   final DateTime initialCalendarDateOverride;
@@ -25,7 +26,7 @@ class Calendar extends StatefulWidget {
       this.showTodayAction: true,
       this.showChevronsToChangeRange: true,
       this.showCalendarPickerIcon: true,
-      this.initialCalendarDateOverride});
+      this.initialCalendarDateOverride, this.showTitle: false});
 
   @override
   _CalendarState createState() => new _CalendarState();
@@ -98,12 +99,12 @@ class _CalendarState extends State<Calendar> {
       children: [
         leftOuterIcon ?? new Container(),
         leftInnerIcon ?? new Container(),
-        new Text(
+        widget.showTitle? new Text(
           displayMonth,
           style: new TextStyle(
             fontSize: 20.0,
           ),
-        ),
+        ):Container(),
         rightInnerIcon ?? new Container(),
         rightOuterIcon ?? new Container(),
       ],
@@ -226,7 +227,7 @@ class _CalendarState extends State<Calendar> {
   @override
   Widget build(BuildContext context) {
     return new Container(
-      child: new Column(
+      child: new Row(
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_calendar/flutter_calendar.dart';
-
 main() {
   runApp(new CalendarViewApp());
 }
-
 class CalendarViewApp extends StatelessWidget {
   void handleNewDate(date) {
-    print("handleNewDate ${date}");
+    print('handleNewDate $date');
   }
 
   @override
@@ -30,29 +28,33 @@ class CalendarViewApp extends StatelessWidget {
           child: new ListView(
             shrinkWrap: true,
             children: <Widget>[
-              new Text('The Default Calendar:'),
-              new Calendar(
-                onSelectedRangeChange: (range) =>
-                    print("Range is ${range.item1}, ${range.item2}"),
-                onDateSelected: (date) => handleNewDate(date),
-              ),
-              new Divider(
-                height: 50.0,
-              ),
-              new Text('The Expanded Calendar:'),
-              new Calendar(
-                onSelectedRangeChange: (range) =>
-                    print("Range is ${range.item1}, ${range.item2}"),
-                isExpandable: true,
-              ),
-              new Divider(
-                height: 50.0,
-              ),
+//              new Text('The Default Calendar:'),
+//              new Calendar(
+//                onSelectedRangeChange: (range) =>
+//                    print("Range is ${range.item1}, ${range.item2}"),
+//                onDateSelected: (date) => handleNewDate(date),
+//              ),
+//              new Divider(
+//                height: 50.0,
+//              ),
+//              new Text('The Expanded Calendar:'),
+//              new Calendar(
+//                onSelectedRangeChange: (range) =>
+//                    print("Range is ${range.item1}, ${range.item2}"),
+//                isExpandable: true,
+//              ),
+//              new Divider(
+//                height: 50.0,
+//              ),
               new Text('A Custom Weekly Calendar:'),
               new Calendar(
-                onSelectedRangeChange: (range) =>
-                    print("Range is ${range.item1}, ${range.item2}"),
-                isExpandable: true,
+//                onSelectedRangeChange: (range) =>
+//                    print("Range is ${range.item1}, ${range.item2}"),
+                isExpandable: false,
+                showCalendarPickerIcon: true,
+                showChevronsToChangeRange: false,
+                showTodayAction: false,
+                showTitle: false,
                 dayBuilder: (BuildContext context, DateTime day) {
                   return new InkWell(
                     onTap: () => print("OnTap ${day}"),
