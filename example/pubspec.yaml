@@ -1,6 +1,9 @@
 name: flutter_calendar_example
 description: Demonstrates the flutter_calendar widget
 
+environment:
+  sdk: ">=2.6.0 <3.0.0"
+
 dependencies:
   flutter:
     sdk: flutter
